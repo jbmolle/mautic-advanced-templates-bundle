@@ -12,6 +12,10 @@ return function (ContainerConfigurator $configurator) {
         ->autoconfigure()
         ->public();
 
+    $excludes = [
+      'Feed',
+    ];
+
     $services->load('MauticPlugin\\MauticAdvancedTemplatesBundle\\', '../')
-        ->exclude('../{'.implode(',', MauticCoreExtension::DEFAULT_EXCLUDES).'}');
+        ->exclude('../{'.implode(',', array_merge(MauticCoreExtension::DEFAULT_EXCLUDES, $excludes)).'}');
 };
